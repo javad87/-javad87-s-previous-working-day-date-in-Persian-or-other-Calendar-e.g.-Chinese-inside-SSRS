@@ -1,7 +1,7 @@
 # -javad87-s-previous-working-day-date-in-Persian-or-other-Calendar-e.g.-Chinese-inside-SSRS
 @javad87's How to find previous working day date in Persian or other Calendar (e.g., Chinese, lunar calendar) inside sql server reporting services (SSRS)
 
-#Problem:
+# Problem:
 
 Consider we want to find a previous working day which is less than a given date (parameter) inside a date set, let me explain it with example in stock trading, consider we have a trading dates list like this (date string format "yyyy/mm/dd"):
 
@@ -11,16 +11,17 @@ and we want to find the first date before 11th day which trade has happened, sin
 Next, I explained how we can find this day with expression in SSRS. 
 
 
-#Assumptions:
+# Assumptions:
 
 1- This method is for Persian or Non-Gregorian calendar which does not have built-in Date&Time functions to find previous working day.
 
 2- It can be used as an expression inside SSRS by using report variable (defining a variable is explained here: https://www.sqlchick.com/entries/2010/11/24/deciding-whether-to-use-an-expression-or-a-variable-in-ssrs.html) 
+
 3- I did this calculation with assumption that I have the date set (records or array) which Trade (or whatever value you want to calculate…. e.g., sales or buys) has occurred, i.e. I knew the date of trades (or sales or buys) .... definitely these dates are working days and there is no holidays or weekends among them. 
 
 4- We have a parameter which will be provided by user as a date with string type (e.g., "1400/01/10") which we want to find previous trading date.
 
-#Solution:
+# Solution:
 
 1- Most of the time we have dates as string since It is not Gregorian to use Date&Time data Type to save them in Databases, for example in Persian calendar we have "1400/01/10" which is a string with this format yyyy/mm/dd, year, month  and day.
 
@@ -41,11 +42,13 @@ cint(Split(Left(Right(Parameters!DimCalendarDateFormal.Value(0),11),10),"/"))
 
 =mid(Variables!PreviousِTradeDate.Value,1,4) & "/" & mid(Variables!PreviousِTradeDate.Value,5,2) & "/" & mid(Variables!PreviousِTradeDate.Value,7,2)
 
-#Refrences:
+# Refrences:
 
 links for how to define a Report Variable:
+
 https://docs.microsoft.com/en-us/sql/reporting-services/report-design/built-in-collections-report-and-group-variables-references-report-builder?view=sql-server-ver15
 https://www.wiseowl.co.uk/blog/s283/report-variables.htm
 
 link for Aggregation function and considering scope:
+
 https://docs.microsoft.com/en-us/sql/reporting-services/report-design/report-builder-functions-aggregate-function?view=sql-server-ver15
