@@ -14,14 +14,17 @@ Next, I explained how we can find this day with expression in SSRS.
 #Assumptions:
 
 1- This method is for Persian or Non-Gregorian calendar which does not have built-in Date&Time functions to find previous working day.
+
 2- It can be used as an expression inside SSRS by using report variable (defining a variable is explained here: https://www.sqlchick.com/entries/2010/11/24/deciding-whether-to-use-an-expression-or-a-variable-in-ssrs.html) 
 3- I did this calculation with assumption that I have the date set (records or array) which Trade (or whatever value you want to calculate…. e.g., sales or buys) has occurred, i.e. I knew the date of trades (or sales or buys) .... definitely these dates are working days and there is no holidays or weekends among them. 
+
 4- We have a parameter which will be provided by user as a date with string type (e.g., "1400/01/10") which we want to find previous trading date.
 
 #Solution:
 
 1- Most of the time we have dates as string since It is not Gregorian to use Date&Time data Type to save them in Databases, for example in Persian calendar we have "1400/01/10" which is a string with this format yyyy/mm/dd, year, month  and day.
-2- Procedure how to find the PreviousTradDate: first of all, we have to change string date to integer value, i.e changing "1400/01/10"----> 14000110.
+
+2- Procedure how to find the PreviousTradDate: first of all, we have to change string date to integer value, i.e converting "1400/01/10"----> 14000110.
 with converting to integer now we can compare two date values i.e 14000109 is less than 14000110 this way we can find the previous days. to do this comparison on a list (array or set of records) we can use following expression:
 
 Max(iif(Fields!Date_Int.Value<
@@ -46,20 +49,3 @@ https://www.wiseowl.co.uk/blog/s283/report-variables.htm
 
 link for Aggregation function and considering scope:
 https://docs.microsoft.com/en-us/sql/reporting-services/report-design/report-builder-functions-aggregate-function?view=sql-server-ver15
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
