@@ -3,7 +3,7 @@
 
 # Problem:
 
-Consider we want to find a previous working day which is less than a given date (parameter) inside a date set, let me explain it with example in stock trading, consider we have a trading dates list like this (date string format "yyyy/mm/dd"):
+Consider we want to find a previous working day which is less than a given date (parameter) inside a date set, let me explain it with example in stock trading, consider we have a trading dates list like this (date is in string format "yyyy/mm/dd"):
 
 Date_Int = ["1400/01/01","1400/01/04","1400/01/05","1400/01/06","1400/01/07","1400/01/08","1400/01/11","1400/01/12"]
 
@@ -19,7 +19,7 @@ Next, I explained how we can find this day with expression in SSRS.
 
 3- I did this calculation with assumption that I have the date set (records or array) which Trade (or whatever value you want to calculate…. e.g., sales or buys) has occurred, i.e. I knew the date of trades (or sales or buys) .... definitely these dates are working days and there is no holidays or weekends among them. 
 
-4- We have a parameter which will be provided by user as a date with string type (e.g., "1400/01/10") which we want to find previous trading date.
+4- We have defined a parameter in our report and user will provide a date value in string format(e.g., "1400/01/10") and wants to know a first previous trading date less than a parameter value (given date).
 
 # Solution:
 
